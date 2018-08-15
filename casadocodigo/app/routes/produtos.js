@@ -1,21 +1,18 @@
 module.exports = function(app){
     app.get('/produtos', function(req,res){
         var connection = app.infra.connectionFactory();
-        var produtosBanco = app.infra.produtosBanco;
+        var produtosBanco = app.infra.produtosBanco(connection);
         
-        produtosBanco.lista(connection, function(errors, results){
+        produtosBanco.lista(function(errors, results){
             res.send(results);
             //res.render('produtos/lista', {lista:results})
-
 
         });
       
         connection.end();
 
-        app.get ('produtos/detalhe', function(){
-
-
-
         });
+
+        app.get ('produtos/remove', function(){
     });
 }
